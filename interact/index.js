@@ -15,38 +15,12 @@ const contractABI = [
           "type": "address"
         }
       ],
-      "stateMutability": "payable",
+      "stateMutability": "nonpayable",
       "type": "constructor"
     },
     {
       "inputs": [],
       "name": "addressLimit",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "depositTokens",
-      "outputs": [],
-      "stateMutability": "payable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "gasLeft",
       "outputs": [
         {
           "internalType": "uint256",
@@ -148,6 +122,19 @@ const contractABI = [
           "type": "uint256"
         }
       ],
+      "name": "withdrawEth",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
       "name": "withdrawTokens",
       "outputs": [],
       "stateMutability": "nonpayable",
@@ -175,23 +162,22 @@ async function main() {
     wallet
   );
   
-  const toWei = ethers.parseEther(``); //eth or token amount
-  const addresses = [ // add upto 100 ethereum addresses
-    "0x1",
-    "0x2",
-    "0x3",
-    "0x4",
-    "0x5",
+  const toWei = ethers.parseEther(`0.01`); //eth or token amount
+  const addresses = [
+    "0x",
+    "0x",
+    "0x",
+    "0x",
+    "0x",
   ];
   let tx = await sendContract.sendEth(addresses, {
     value: toWei,
   }); // function to multisend eth
-  let tx2 = await sendContract.depositTokens(toWei); // function to despoit erc20 tokens
-  let tx3 = await sendContract.sendTokens(addresses, toWei); //function to multisend erc20 tokens
+
   // add other functions from the contract abi.....
   
   
-  console.log(tx2);
+  console.log(tx);
 }
 
 main();
