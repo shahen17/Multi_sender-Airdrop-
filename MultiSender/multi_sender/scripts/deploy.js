@@ -1,9 +1,6 @@
 async function main() {
-  const payableAmount = ethers.parseEther("0.03");
   const addressLimit = 100; // max address limit
-  const multisender = await hre.ethers.deployContract("multiSender", [`${addressLimit}`, "erc20 address here"], {
-    value: payableAmount,
-  });
+  const multisender = await hre.ethers.deployContract("multiSender", [`${addressLimit}`, "erc20 address here"]);
 
   await multisender.waitForDeployment();
 
